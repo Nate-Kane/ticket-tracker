@@ -1,24 +1,26 @@
-# README
+#README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Steps to setup and run
+git clone git@github.com:jimibue/react-rails-router-starter-f20.git <project-name>
 
-Things you may want to cover:
+cd project-name
 
-* Ruby version
+bundle install
 
-* System dependencies
+in database.yml change name of database react_rails_router_starter_f20 to project-name
 
-* Configuration
+rails db:create db:migrate db:seed
 
-* Database creation
+rails s -p 3001
 
-* Database initialization
+cd client && yarn
 
-* How to run the test suite
+yarn start
 
-* Services (job queues, cache servers, search engines, etc.)
+### handle git
+you can either remove the remote and add you own, or you can remove the git repo, remove the remote keeps the commit history from starter project, and rm -rf .git is going to complete remove it/
+remove origin git remote rm origin
+git add remote origin to new repo
+or rm -rf .git git init git remote add origin new githib page git add . git commit -m git push origin master
 
-* Deployment instructions
-
-* ...
+push
