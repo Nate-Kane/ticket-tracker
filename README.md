@@ -1,6 +1,7 @@
 #README
 
 ### Steps to setup and run
+
 git clone git@github.com:jimibue/react-rails-router-starter-f20.git <project-name>
 
 `cd project-name`
