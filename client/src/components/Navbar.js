@@ -1,22 +1,48 @@
+import React, { useContext } from "react";
+import { Menu } from "semantic-ui-react";
+import { Link, useHistory, useLocation } from "react-router-dom";
+import { AuthContext } from "../providers/AuthProvider";
 
-// FOR NOW I'LL JUST DO EXPORT DEFAULT AND A RANDOM NOTE OR SOMETHING TO SHOW THAT THIS PAGE IS CONNECT
+const Navbar = (props) => {
+  let history = useHistory();
+  let { pathname } = useLocation();
+  const { user, handleLogout } = useContext(AuthContext);
 
-export default () => <h2> Navbar </h2>
+  const rightNavItems = () => {
+    if (user) {
+      return (
+        <Menu.Menu position="right">
+          <Menu.Item name="logout" onClick={() => handleLogout(history)} />
+        </Menu.Menu>
+      );
+    } else {
+      return (
+        <Menu.Menu position="right">
+          <Link to="/login">
+            <Menu.Item id="login" name="login" active={pathname === "/login"} />
+          </Link>
+          <Link to="/register">
+            <Menu.Item
+              id="register"
+              name="register"
+              active={pathname === "/register"}
+            />
+          </Link>
+        </Menu.Menu>
+      );
+    }
+  };
 
+  return (
+    <div>
+      <Menu pointing secondary>
+        <Link to="/">
+          <Menu.Item name="home" id="home" active={pathname === "/"} />
+        </Link>
+        {rightNavItems()}
+      </Menu>
+    </div>
+  );
+};
 
-                    // HERE IS AN EXAMPLE OF A NAVBAR WITH SEMANTIC-UI
-// import { Link } from "react-router-dom";
-// import { Menu } from "semantic-ui-react";
-
-// export default () => {
-//   return (
-//     <Menu>
-//       <Link to="/">
-//         <Menu.Item name="Home">Home</Menu.Item>
-//       </Link>
-//       <Link to="/things">
-//         <Menu.Item name="Home">Things</Menu.Item>
-//       </Link>
-//     </Menu>
-//   );
-// };
+export default Navbar;

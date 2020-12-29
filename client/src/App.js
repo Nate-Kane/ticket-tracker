@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
-import Home from "./demo/Home";
-import Things from './demo/Things';
+import React from "react";
+import { Route, Switch } from "react-router-dom";
+import Home from "./components/Home";
+// import ThingsDemo from "./things/ThingsDemo";
+import { Container } from "semantic-ui-react";
+// import BasicUpload from "./images/BasicUpload";
+import Navbar from "./components/Navbar";
+import Login from "./components/Login";
+import Register from "./components/Register";
+import FetchUser from "./components/FetchUser";
+import ProtectedRoute from "./components/ProtectedRoute";
+// import Hooks from "./hooks";
 import NoMatch from './components/NoMatch';
-import { Route, Switch } from 'react-router-dom';
-import Navbar from './components/Navbar';
 
 function App() {
   return (
-    <div>
-      <>
-        <Navbar />
+    <>
+
+      <Navbar />
+      <FetchUser>
+        <Container>
           <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/things" component={Things} />
+            <ProtectedRoute exact path="/" component={Home} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
             <Route component={NoMatch} />
           </Switch>
-      </>
-    </div>
+        </Container>
+      </FetchUser>
+    </>
   );
 }
 
